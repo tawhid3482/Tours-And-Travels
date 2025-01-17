@@ -1,9 +1,9 @@
 import pic from '../../../assets/banner/bag.png'
 const Experience = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-20 py-16 ">
+    <div className="flex flex-col lg:flex-row items-center justify-between p-4 py-16  my-5">
       {/* Left Section */}
-      <div className="lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
+      <div className="lg:w-2/3 text-center lg:text-left mb-8 lg:mb-0">
         <p className="text-[#08B3AB] font-semibold text-lg mb-2">Experience</p>
         <h2 className="text-4xl font-bold text-gray-900 leading-snug">
           With all our experience, <br /> we will serve you

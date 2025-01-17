@@ -1,6 +1,5 @@
 const GalleryImg = ({ img }) => {
   const { id, image } = img;
-  console.log(img);
   return (
     <div>
       <div className="my-">
