@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "img": "https://ihplb.b-cdn.net/wp-content/uploads/2021/06/Most-Beautiful-Places-in-the-World-750x430.jpg",
+    "location":"London",
+    "rating":"4.5",
+    "placeName":"westminster Bridge",
+    "price":"35"
+
+  },
+  {
+    "id": 2,
+    "img": "https://ihplb.b-cdn.net/wp-content/uploads/2021/06/Most-Beautiful-Places-in-the-World-750x430.jpg",
+    "location":"London",
+    "rating":"4.5",
+    "placeName":"westminster Bridge",
+    "price":"35"
+
+  },
+  {
+    "id": 3,
+    "img": "https://ihplb.b-cdn.net/wp-content/uploads/2021/06/Most-Beautiful-Places-in-the-World-750x430.jpg",
+    "location":"London",
+    "rating":"4.5",
+    "placeName":"westminster Bridge",
+    "price":"35"
+
+  },
+  {
+    "id": 4,
+    "img": "https://ihplb.b-cdn.net/wp-content/uploads/2021/06/Most-Beautiful-Places-in-the-World-750x430.jpg",
+    "location":"London",
+    "rating":"4.5",
+    "placeName":"westminster Bridge",
+    "price":"35"
+
+  }
+]
