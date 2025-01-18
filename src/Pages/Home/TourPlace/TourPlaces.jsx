@@ -2,7 +2,7 @@ import { FaLocationPin, FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const TourPlaces = ({ tour }) => {
-  const { _id, img, location, rating, placeName, price } = tour;
+  const { id, img, location, rating, placeName, price } = tour;
   return (
     <div>
       <div className="card bg-base-100 w-64 my-5 dark:bg-slate-300 dark:text-black shadow-xl">
@@ -29,7 +29,7 @@ const TourPlaces = ({ tour }) => {
             <p className="text-[#08B3AB] dark:text-black">
               $ {price} /per person
             </p>
-            <Link to={`/details/${_id}`}>
+            <Link to={`/details/${id}`}>
               <button className="btn-sm rounded-lg bg-[#08B3AB] hover:bg-blue-400 text-white">
                 Details
               </button>
