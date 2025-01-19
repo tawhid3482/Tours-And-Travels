@@ -4,6 +4,8 @@ import Home from "../Pages/Home/Home";
 import Tour from "../Pages/Home/TourPlace/Tour";
 import About from "../Pages/About/About";
 import TourDetail from "../Pages/Home/TourPlace/TourDetail";
+import AllTourPlace from "../Pages/Home/TourPlace/AllTourPlace";
+import Login from "../Pages/Login/Login";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,12 +21,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "/tour",
-        element: <Tour></Tour>,
+        element: <AllTourPlace></AllTourPlace>,
       },
       {
         path: "/details/:id",
         element: <TourDetail></TourDetail>,
-        loader: () => fetch("place.json"),
+        loader: () => fetch("/place.json"),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
       },
     ],
   },

@@ -5,7 +5,8 @@
     "location":"London",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35"
+    "price":"35",
+    "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   },
   {
@@ -14,7 +15,8 @@
     "location":"London",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35"
+    "price":"35",
+    "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   },
   {
@@ -23,7 +25,8 @@
     "location":"London",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35"
+    "price":"35",
+    "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   },
   {
@@ -32,7 +35,8 @@
     "location":"London",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35"
+    "price":"35",
+    "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   }
 ]
