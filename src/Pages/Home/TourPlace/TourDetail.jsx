@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoaderData, useParams } from "react-router-dom";
 import UseReviews from "../../../Hooks/UseReviews";
+import UseAuth from "../../../Hooks/UseAuth";
 
 const TourDetail = () => {
   const { register, handleSubmit, reset } = useForm();
+  const { user } = UseAuth();
   const [rating, setRating] = useState(2);
   const [guestCount, setGuestCount] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [sum, setSum] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [review,setReviews]=UseReviews()
-
-
+  const [review, setReviews] = UseReviews();
 
   const { id } = useParams();
   const [tours, setTours] = useState(null);
@@ -28,7 +28,6 @@ const TourDetail = () => {
     }
   }, [id, data]);
 
- 
   useEffect(() => {
     if (tours) {
       const sumTotal = guestCount * tours.price;
@@ -61,10 +60,13 @@ const TourDetail = () => {
 
     const newReview = {
       rating,
-      text: reviewText,
+      name: user.displayName,
+      photo: user.photoURL,
+      speech: reviewText,
+      location: tours.location,
       date: new Date().toLocaleDateString(),
     };
-console.log(newReview)
+    console.log(newReview);
     setReviews((prev) => [...prev, newReview]);
     setReviewText(""); // Clear the input
   };
@@ -206,14 +208,14 @@ console.log(newReview)
               <div className="flex gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
-                  key={star}
-                  className={`text-2xl ${
-                    star <= rating ? "text-yellow-400" : "text-gray-400"
-                  }`}
-                  onClick={() => setRating(star)}
-                >
-                  ★
-                </button>
+                    key={star}
+                    className={`text-2xl ${
+                      star <= rating ? "text-yellow-400" : "text-gray-400"
+                    }`}
+                    onClick={() => setRating(star)}
+                  >
+                    ★
+                  </button>
                 ))}
               </div>
             </div>
@@ -237,22 +239,41 @@ console.log(newReview)
           </div>
         </div>
         {/* Display Reviews */}
+        {/* Display Reviews */}
         <div className="mt-6">
-            <h4 className="text-xl font-semibold mb-4">Recent Reviews</h4>
-            {review?.length > 0 ? (
-              review.map((reviews, index) => (
-                <div key={index} className="mb-4">
+          <h4 className="text-xl font-semibold mb-4">Recent Reviews</h4>
+          {review?.length > 0 ? (
+            review
+              .filter(
+                (reviews) =>
+                  reviews.location.toLowerCase() ===
+                  tours?.location.toLowerCase()
+              ) // Filter reviews by location
+              .map((reviews, index) => (
+                <div key={index} className="mb-4 space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-lg font-bold">⭐ {reviews.rating}</span>
-                    <span className="text-sm text-gray-500">{reviews.date}</span>
+                    <div className="flex gap-4 items-center">
+                      <img
+                        src={reviews.img}
+                        className="rounded-full w-14 h-14"
+                        alt=""
+                      />
+                      <div className="">
+                        <p className="text-lg font-bold uppercase">{reviews.name}</p>
+                        <p className="text-sm text-[#08B3AB]">
+                          {reviews?.date}
+                        </p>
+                      </div>
+                    </div>
+                    <p>⭐ {reviews.rating}</p>
                   </div>
                   <p className="text-gray-700">{reviews.speech}</p>
                 </div>
               ))
-            ) : (
-              <p className="text-gray-500">No reviews yet. Be the first!</p>
-            )}
-          </div>
+          ) : (
+            <p className="text-gray-500">No reviews yet. Be the first!</p>
+          )}
+        </div>
       </div>
     </div>
   );

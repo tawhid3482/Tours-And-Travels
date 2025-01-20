@@ -1,8 +1,26 @@
+import { useEffect, useState } from "react";
 import UseTour from "../../../Hooks/UseTour";
 import TourPlaces from "./TourPlaces";
 
 const AllTourPlace = () => {
   const [tours] = UseTour();
+
+  const [searchLocation, setSearchLocation] = useState(""); // State for search input
+  const [filteredTours, setFilteredTours] = useState([]); // State for filtered tours
+
+
+  useEffect(() => {
+    setFilteredTours(tours);
+  }, [tours]);
+
+  const handleSearch = () => {
+    // Filter tours by location
+    const results = tours.filter((tour) =>
+      tour.location.toLowerCase().includes(searchLocation.toLowerCase())
+    );
+    setFilteredTours(results);
+  };
+
   return (
     <div className="">
       <div className="">
@@ -30,6 +48,8 @@ const AllTourPlace = () => {
                 Location
               </label>
               <input
+                value={searchLocation}
+                onChange={(e) => setSearchLocation(e.target.value)}
                 className="w-full border border-gray-300 dark:text-white rounded-lg px-4 py-2"
                 type="text"
                 placeholder="Where are you going?"
@@ -57,16 +77,25 @@ const AllTourPlace = () => {
             </div>
           </div>
           <div className="mt-4 flex justify-end">
-            <button className="bg-[#08B3AB] hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg">
+            <button
+              onClick={handleSearch}
+              className="bg-[#08B3AB] hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg"
+            >
               Search
             </button>
           </div>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {tours?.map((tour) => (
-          <TourPlaces key={tour.id} tour={tour}></TourPlaces>
-        ))}
+      {filteredTours?.length > 0 ? (
+          filteredTours.map((tour) => (
+            <TourPlaces key={tour.id} tour={tour}></TourPlaces>
+          ))
+        ) : (
+          <div className="col-span-full text-center text-[#08B3AB] text-xl mt-8">
+            No tours found for the selected location.
+          </div>
+        )}
       </div>
     </div>
   );
