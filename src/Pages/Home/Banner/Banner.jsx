@@ -1,8 +1,26 @@
 import pic1 from "../../../assets/banner/piramite.jpeg";
 import pic2 from "../../../assets/banner/sea.jpg";
 import pic3 from "../../../assets/banner/hell.jpeg";
+import { useNavigate } from "react-router-dom";
+import UseTour from "../../../Hooks/UseTour";
+import { useState } from "react";
 
 const Banner = () => {
+  const navigate = useNavigate();
+  const [tours] = UseTour();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterData, setFilterData] = useState(tours);
+
+  const handleSearch = () => {
+    const filterPro = tours?.filter((item) =>
+      item?.location.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilterData(filterPro);
+    navigate("/search", {
+      state: { filterData: filterPro, query: searchTerm },
+    });
+  };
+
   return (
     <div className="dark:bg-slate-300 dark:text-black ">
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-8">
@@ -53,6 +71,8 @@ const Banner = () => {
               Location
             </label>
             <input
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full border border-gray-300 dark:text-white rounded-lg px-4 py-2"
               type="text"
               placeholder="Where are you going?"
@@ -80,7 +100,10 @@ const Banner = () => {
           </div>
         </div>
         <div className="mt-4 flex justify-end">
-          <button className="bg-[#08B3AB] hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg">
+          <button
+            onClick={handleSearch}
+            className="bg-[#08B3AB] hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg"
+          >
             Search
           </button>
         </div>

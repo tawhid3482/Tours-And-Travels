@@ -5,37 +5,41 @@
     "location":"London",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35",
+    "price":35,
+    "serviceCharge":10,
     "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   },
   {
     "id": 2,
     "img": "https://ihplb.b-cdn.net/wp-content/uploads/2021/06/Most-Beautiful-Places-in-the-World-750x430.jpg",
-    "location":"London",
+    "location":"Canada",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35",
+    "price":42,
+    "serviceCharge":10,
     "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   },
   {
     "id": 3,
     "img": "https://ihplb.b-cdn.net/wp-content/uploads/2021/06/Most-Beautiful-Places-in-the-World-750x430.jpg",
-    "location":"London",
+    "location":"USA",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35",
+    "price":40,
+    "serviceCharge":10,
     "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   },
   {
     "id": 4,
     "img": "https://ihplb.b-cdn.net/wp-content/uploads/2021/06/Most-Beautiful-Places-in-the-World-750x430.jpg",
-    "location":"London",
+    "location":"Jamaica",
     "rating":"4.5",
     "placeName":"westminster Bridge",
-    "price":"35",
+    "price":38,
+    "serviceCharge":10,
     "description": "Lorem ipsum  sit adipisicing elit. Laudantium, odio possimus provident pariatur perferendis omnis tempora fuga esse doloremque dolor illo iusto eveniet nulla non error libero dignissimos, suscipit eligendi."
 
   }

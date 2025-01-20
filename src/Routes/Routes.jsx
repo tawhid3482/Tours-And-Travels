@@ -7,10 +7,13 @@ import TourDetail from "../Pages/Home/TourPlace/TourDetail";
 import AllTourPlace from "../Pages/Home/TourPlace/AllTourPlace";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/Login/SignUp";
+import SearchTour from "../Pages/Home/TourPlace/SearchTour";
+import ErrorPage from "../Shared/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -37,6 +40,10 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
+      {
+        path:"/search",
+        element:<SearchTour></SearchTour>
+      }
     ],
   },
 ]);

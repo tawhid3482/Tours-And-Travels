@@ -1,7 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
+import UseAuth from "../../../Hooks/UseAuth";
 
 const Navbar = () => {
+  const { user } = UseAuth();
   return (
     <div>
       <div className="dark:bg-slate-300 dark:text-black navbar  sticky">
@@ -25,24 +27,16 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-[#08B3AB] rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <a>Item 3</a>
+                <Link to={"/tour"}>Tour</Link>
               </li>
             </ul>
           </div>
@@ -62,9 +56,50 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to={'/login'}>
-            <a className="btn bg-[#08B3AB] text-white">Login</a>
-          </Link>
+          {user ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src={user?.photoURL}
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <a className="">{user?.displayName}</a>
+                  </li>
+                  {isAdmin ? (
+                    <li>
+                      <Link to="/dashboard/adminHome">Dashboard</Link>
+                    </li>
+                  ) : (
+                    <li>
+                      <Link to="/dashboard/userHome">Dashboard</Link>
+                    </li>
+                  )}
+                  <li>
+                    <a onClick={logoutUser}>Logout </a>
+                  </li>
+                </ul>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="btn bg-[#08B3AB] text-white">Login</button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

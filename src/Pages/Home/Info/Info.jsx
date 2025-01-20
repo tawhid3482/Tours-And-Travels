@@ -11,7 +11,7 @@ const Info = () => {
           </p>
           <div className="flex gap-10 items-center">
             <p className="text-lg text-[#cc8a28]"> Sing-up Now! </p>
-            <Link to={"/sign-up"}>
+            <Link to={"/signUp"}>
               <button className="btn btn-sm bg-[#08B3AB] hover:bg-blue-400 text-white">
                 Sign-up
               </button>

@@ -1,43 +1,83 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoaderData, useParams } from "react-router-dom";
+import UseReviews from "../../../Hooks/UseReviews";
 
 const TourDetail = () => {
   const { register, handleSubmit, reset } = useForm();
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(2);
+  const [guestCount, setGuestCount] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [sum, setSum] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+  const [review,setReviews]=UseReviews()
+
+
 
   const { id } = useParams();
   const [tours, setTours] = useState(null);
   const data = useLoaderData();
-  console.log(data);
 
   useEffect(() => {
     if (data) {
       const findData = data?.find((tour) => tour.id == id);
       setTours(findData);
+      if (findData) {
+        setTotalPrice(findData.price + findData.serviceCharge); // Initialize total price
+      }
     }
   }, [id, data]);
 
-  const onSubmit = (formData) => {
-    console.log("Form Submitted", formData);
-    reset();
+ 
+  useEffect(() => {
+    if (tours) {
+      const sumTotal = guestCount * tours.price;
+      setSum(sumTotal);
+      const newTotal = guestCount * tours.price + tours.serviceCharge;
+      setTotalPrice(newTotal);
+    }
+  }, [guestCount, tours]);
+
+  const onSubmit = (data) => {
+    const bookingData = {
+      guestName: data.name,
+      phone: data.phone,
+      date: data.date,
+      guest: guestCount,
+      image: tours.img,
+      mainPrice: tours.price,
+      serviceCharge: tours.serviceCharge,
+      totalPrice: totalPrice,
+    };
+    console.log(bookingData);
+  };
+
+  const handleGuestChange = (change) => {
+    setGuestCount((prev) => Math.max(1, prev + change)); // Ensure guest count is never negative
   };
 
   const handleSubmitReview = () => {
-    // if (rating === 0) {
-    // }
-  };
+    if (reviewText.trim() === "") return; // Prevent empty reviews
 
+    const newReview = {
+      rating,
+      text: reviewText,
+      date: new Date().toLocaleDateString(),
+    };
+console.log(newReview)
+    setReviews((prev) => [...prev, newReview]);
+    setReviewText(""); // Clear the input
+  };
   return (
-    <div className="dark:bg-slate-300 dark:text-black flex items-center justify-center w-full  p-4">
-      <div className=" w-full rounded-lg  overflow-hidden">
+    <div className="dark:bg-slate-300 dark:text-black flex items-center justify-center w-full p-2">
+      <div className="w-full rounded-lg overflow-hidden">
         <div className="flex flex-col lg:flex-row-reverse gap-8">
           {/* Tour Image and Details */}
           <div className="w-full lg:w-2/3">
             <img
               src={tours?.img}
               alt={tours?.placeName || "Tour Image"}
-              className="rounded-lg w-full  object-cover mb-4"
+              className="rounded-lg w-full object-cover mb-4"
             />
             <div className="p-4">
               <h1 className="text-3xl font-bold text-gray-800 mb-2">
@@ -95,6 +135,7 @@ const TourDetail = () => {
                   className="input input-bordered w-full mt-1 dark:text-white"
                 />
               </div>
+
               <div className="flex justify-between items-center gap-1">
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700">
@@ -110,23 +151,39 @@ const TourDetail = () => {
                   <label className="block text-sm font-medium text-gray-700">
                     Guest
                   </label>
-                  <input
-                    type="number"
-                    placeholder="Guest Number"
-                    {...register("guest", { required: true })}
-                    className="input input-bordered w-full mt-1 dark:text-white"
-                  />
+                  <div className="flex items-center gap-2 ">
+                    <button
+                      type="button"
+                      className="px-2 py-1 bg-gray-200 rounded"
+                      onClick={() => handleGuestChange(-1)}
+                    >
+                      -
+                    </button>
+                    <span className="font-medium">{guestCount}</span>
+                    <button
+                      type="button"
+                      className="px-2 py-1 bg-gray-200 rounded"
+                      onClick={() => handleGuestChange(1)}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
 
               <div className="flex justify-between items-center text-gray-600 mb-4">
                 <span>Service charge</span>
-                <span>${tours?.price}</span>
+                <span>${tours?.serviceCharge}</span>
               </div>
-
+              <div className="flex justify-between items-center font-bold text-gray-800 mb-6">
+                <span>SubTotal</span>
+                <span>
+                  ${sum} + ${tours?.serviceCharge}
+                </span>
+              </div>
               <div className="flex justify-between items-center font-bold text-gray-800 mb-6">
                 <span>Total</span>
-                <span>${tours?.price}</span>
+                <span>${totalPrice}</span>
               </div>
 
               <button
@@ -149,12 +206,14 @@ const TourDetail = () => {
               <div className="flex gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
-                    key={star}
-                    className="text-2xl text-gray-400 hover:text-yellow-400"
-                    onClick={() => setRating(star)}
-                  >
-                    ★
-                  </button>
+                  key={star}
+                  className={`text-2xl ${
+                    star <= rating ? "text-yellow-400" : "text-gray-400"
+                  }`}
+                  onClick={() => setRating(star)}
+                >
+                  ★
+                </button>
                 ))}
               </div>
             </div>
@@ -164,7 +223,9 @@ const TourDetail = () => {
               <input
                 type="text"
                 placeholder="Write your review..."
-                className="input input-bordered w-full"
+                className="input input-bordered w-full dark:text-white"
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
               />
               <button
                 className="btn bg-[#08B3AB] text-white px-4 py-2 rounded-md"
@@ -175,6 +236,23 @@ const TourDetail = () => {
             </div>
           </div>
         </div>
+        {/* Display Reviews */}
+        <div className="mt-6">
+            <h4 className="text-xl font-semibold mb-4">Recent Reviews</h4>
+            {review?.length > 0 ? (
+              review.map((reviews, index) => (
+                <div key={index} className="mb-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-bold">⭐ {reviews.rating}</span>
+                    <span className="text-sm text-gray-500">{reviews.date}</span>
+                  </div>
+                  <p className="text-gray-700">{reviews.speech}</p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500">No reviews yet. Be the first!</p>
+            )}
+          </div>
       </div>
     </div>
   );

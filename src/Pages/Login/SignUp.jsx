@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import login from "../../assets/login/login.png";
 import { AuthContext } from "../../Provider/AuthProvider";
+import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -219,7 +220,7 @@ const SignUp = () => {
               </form>
               <div className="divider ">OR</div>
               <div className="text-center mb-5">
-                {/* <SocialLogin></SocialLogin> */}
+                <SocialLogin></SocialLogin>
               </div>
               <div className="text-center mb-5 dark:text-black">
                 <p>
