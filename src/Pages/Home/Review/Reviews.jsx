@@ -46,13 +46,13 @@ const Reviews = () => {
         className="mySwiper my-0"
       >
         {review.map(({ id, name, img, speech }) => (
-          <SwiperSlide key={id}>
+          <SwiperSlide key={_id}>
             <div className="w-96">
               <p className="text-lg mb-4">{speech}</p>
               <div className="flex gap-5 items-center">
                 <img
                   src={img}
-                  alt={`Review ${id}`}
+                  alt={`Review ${_id}`}
                   className="w-32 h-32 my-2 object-contain border p-1 rounded-md"
                 />
                 <div>

@@ -239,7 +239,6 @@ const TourDetail = () => {
           </div>
         </div>
         {/* Display Reviews */}
-        {/* Display Reviews */}
         <div className="mt-6">
           <h4 className="text-xl font-semibold mb-4">Recent Reviews</h4>
           {review?.length > 0 ? (
