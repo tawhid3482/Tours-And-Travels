@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import UseAxiosPublic from "./UseAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const UseGallery = () => {
-  const [photo, setPhoto] = useState();
-  useEffect(() => {
-    fetch("gallery.json")
-      .then((res) => res.json())
-      .then((data) => setPhoto(data));
-  }, []);
-  return [photo];
+  const AxiosPublic = UseAxiosPublic();
+  const { data = photo, refetch } = useQuery({
+    queryKey: ["gallery"],
+    queryFn: async () => {
+      const res = await AxiosPublic.get("/gallery");
+      return res.data;
+    },
+  });
+  return [photo, refetch];
 };
 
 export default UseGallery;
