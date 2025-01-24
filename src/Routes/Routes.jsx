@@ -19,6 +19,8 @@ import AdminRoute from "./AdminRoute";
 import AllUser from "../Pages/Dashboard/AdminComponents/AllUser";
 import AddPlace from "../Pages/Dashboard/AdminComponents/AddPlace";
 import ManagePlace from "../Pages/Dashboard/AdminComponents/ManagePlace";
+import UpdatePlace from "../Pages/Dashboard/AdminComponents/UpdatePlace";
+import AllReservation from "../Pages/Dashboard/AdminComponents/AllReservation";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -108,6 +110,24 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManagePlace></ManagePlace>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "updatePlace/:id",
+        element: (
+          <AdminRoute>
+            <UpdatePlace></UpdatePlace>
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/place/${params.id}`),
+      },
+      {
+        path: "allReservation",
+        element: (
+          <AdminRoute>
+            <AllReservation></AllReservation>
           </AdminRoute>
         ),
       },
