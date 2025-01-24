@@ -5,7 +5,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllReservation = () => {
   const AxiosSecure = useAxiosSecure();
