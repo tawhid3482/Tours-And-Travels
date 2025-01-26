@@ -45,7 +45,7 @@ const Reviews = () => {
         modules={[FreeMode, Pagination, Autoplay]}
         className="mySwiper my-0"
       >
-        {review.map(({ id, name, img, speech }) => (
+        {review.map(({ _id, name, img, speech }) => (
           <SwiperSlide key={_id}>
             <div className="w-96">
               <p className="text-lg mb-4">{speech}</p>

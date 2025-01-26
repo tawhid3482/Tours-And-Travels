@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <TourDetail></TourDetail>,
-        loader: () => fetch("/place.json"),
+        loader: () => fetch("http://localhost:5000/place"),
       },
       {
         path: "/login",

@@ -89,7 +89,7 @@ const AllTourPlace = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
       {filteredTours?.length > 0 ? (
           filteredTours.map((tour) => (
-            <TourPlaces key={tour.id} tour={tour}></TourPlaces>
+            <TourPlaces key={tour._id} tour={tour}></TourPlaces>
           ))
         ) : (
           <div className="col-span-full text-center text-[#08B3AB] text-xl mt-8">

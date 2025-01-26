@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import UseAuth from "../../../Hooks/UseAuth";
+import UseAdmin from "../../../Hooks/UseAdmin";
 
 const Navbar = () => {
-  const { user } = UseAuth();
+  const { user ,logOutUser} = UseAuth();
+  const [isAdmin]=UseAdmin()
   return (
     <div>
       <div className="dark:bg-slate-300 dark:text-black navbar  sticky">
@@ -55,10 +57,10 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end ">
           {user ? (
             <>
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <div
                   tabIndex={0}
                   role="button"
@@ -73,22 +75,22 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content  rounded-box w-52 bg-white "
                 >
-                  <li>
+                  <li className="hover:bg-[#08B3AB] rounded-md hover:text-white">
                     <a className="">{user?.displayName}</a>
                   </li>
                   {isAdmin ? (
-                    <li>
+                    <li className="hover:bg-[#08B3AB] rounded-md hover:text-white">
                       <Link to="/dashboard/adminHome">Dashboard</Link>
                     </li>
                   ) : (
-                    <li>
+                    <li className="hover:bg-[#08B3AB] rounded-md hover:text-white">
                       <Link to="/dashboard/userHome">Dashboard</Link>
                     </li>
                   )}
-                  <li>
-                    <a onClick={logoutUser}>Logout </a>
+                  <li className="hover:bg-[#08B3AB] rounded-md hover:text-white">
+                    <a onClick={logOutUser}>Logout </a>
                   </li>
                 </ul>
               </div>

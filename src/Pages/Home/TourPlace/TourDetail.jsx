@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLoaderData, useParams } from "react-router-dom";
+import {
+  useLoaderData,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import UseReviews from "../../../Hooks/UseReviews";
 import UseAuth from "../../../Hooks/UseAuth";
+import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
+import UseBooking from "../../../Hooks/UseBooking";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const TourDetail = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -12,7 +21,11 @@ const TourDetail = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [sum, setSum] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [review, setReviews] = UseReviews();
+  const [review,refresh] = UseReviews();
+  const AxiosPublic = UseAxiosPublic();
+  const [, refetch] = UseBooking();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { id } = useParams();
   const [tours, setTours] = useState(null);
@@ -20,10 +33,10 @@ const TourDetail = () => {
 
   useEffect(() => {
     if (data) {
-      const findData = data?.find((tour) => tour.id == id);
+      const findData = data?.find((tour) => tour._id == id);
       setTours(findData);
       if (findData) {
-        setTotalPrice(findData.price + findData.serviceCharge); // Initialize total price
+        setTotalPrice(findData.price + findData.serviceCharge);
       }
     }
   }, [id, data]);
@@ -38,17 +51,39 @@ const TourDetail = () => {
   }, [guestCount, tours]);
 
   const onSubmit = (data) => {
-    const bookingData = {
-      guestName: data.name,
-      phone: data.phone,
-      date: data.date,
-      guest: guestCount,
-      image: tours.img,
-      mainPrice: tours.price,
-      serviceCharge: tours.serviceCharge,
-      totalPrice: totalPrice,
-    };
-    console.log(bookingData);
+    if (user && user.email) {
+      const bookingData = {
+        guestName: data.name,
+        phone: data.phone,
+        date: data.date,
+        guest: guestCount,
+        image: tours.img,
+        mainPrice: tours.price,
+        serviceCharge: tours.serviceCharge,
+        totalPrice: totalPrice,
+      };
+      AxiosPublic.post("/booking", bookingData).then((res) => {
+        if (res.data.insertedId) {
+          toast.success(`Your Place Booked Successfully`);
+          refetch();
+          navigate("/");
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "You are not logged in",
+        text: "Please login to add to the cart!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
   };
 
   const handleGuestChange = (change) => {
@@ -61,14 +96,18 @@ const TourDetail = () => {
     const newReview = {
       rating,
       name: user.displayName,
-      photo: user.photoURL,
+      img: user.photoURL,
       speech: reviewText,
       location: tours.location,
       date: new Date().toLocaleDateString(),
     };
     console.log(newReview);
-    setReviews((prev) => [...prev, newReview]);
-    setReviewText(""); // Clear the input
+    AxiosPublic.post("/reviews", newReview).then((res) => {
+      if (res.data.insertedId) {
+        toast.success("Your Review Submitted");
+        refresh()
+      }
+    });
   };
   return (
     <div className="dark:bg-slate-300 dark:text-black flex items-center justify-center w-full p-2">
@@ -258,7 +297,9 @@ const TourDetail = () => {
                         alt=""
                       />
                       <div className="">
-                        <p className="text-lg font-bold uppercase">{reviews.name}</p>
+                        <p className="text-lg font-bold uppercase">
+                          {reviews.name}
+                        </p>
                         <p className="text-sm text-[#08B3AB]">
                           {reviews?.date}
                         </p>
