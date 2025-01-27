@@ -1,17 +1,18 @@
+import { createContext, useEffect, useState } from "react";
+import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
   GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
+  updateProfile,
 } from "firebase/auth";
-import { createContext, useEffect, useState } from "react";
-import auth from "../Firebase/Firebase.config";
-import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 
-export const AuthContext = createContext(); 
+import auth from '../Firebase/Firebase.config'
+
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

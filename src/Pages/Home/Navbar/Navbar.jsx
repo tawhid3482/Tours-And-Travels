@@ -86,7 +86,7 @@ const Navbar = () => {
                     </li>
                   ) : (
                     <li className="hover:bg-[#08B3AB] rounded-md hover:text-white">
-                      <Link to="/dashboard/userHome">Dashboard</Link>
+                      <Link to="/dashboard/home">Dashboard</Link>
                     </li>
                   )}
                   <li className="hover:bg-[#08B3AB] rounded-md hover:text-white">

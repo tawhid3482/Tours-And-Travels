@@ -13,7 +13,6 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import UserHome from "../Pages/Dashboard/UserComponents/UserHome";
 import PaymentHistory from "../Pages/Dashboard/UserComponents/PaymentHistory";
-import yourReservation from "../Pages/Dashboard/UserComponents/yourReservation";
 import AdminHome from "../Pages/Dashboard/AdminComponents/AdminHome";
 import AdminRoute from "./AdminRoute";
 import AllUser from "../Pages/Dashboard/AdminComponents/AllUser";
@@ -21,6 +20,8 @@ import AddPlace from "../Pages/Dashboard/AdminComponents/AddPlace";
 import ManagePlace from "../Pages/Dashboard/AdminComponents/ManagePlace";
 import UpdatePlace from "../Pages/Dashboard/AdminComponents/UpdatePlace";
 import AllReservation from "../Pages/Dashboard/AdminComponents/AllReservation";
+import YourReservation from "../Pages/Dashboard/UserComponents/yourReservation";
+import Payment from "../Pages/Dashboard/UserComponents/Payment/Payment";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -73,7 +74,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "yourReservation",
-        element: <yourReservation></yourReservation>,
+        element: <YourReservation></YourReservation>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
       {
         path: "paymentHistory",

@@ -64,7 +64,7 @@ const Banner = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="mt-8  rounded-lg p-4 ">
+      <div className="mt-8  rounded-lg ">
         <div className=" grid grid-cols-3 gap-4">
           <div>
             <label className="block text-gray-600 font-semibold mb-2">

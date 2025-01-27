@@ -21,7 +21,7 @@ const TourDetail = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [sum, setSum] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [review,refresh] = UseReviews();
+  const [review, refresh] = UseReviews();
   const AxiosPublic = UseAxiosPublic();
   const [, refetch] = UseBooking();
   const navigate = useNavigate();
@@ -54,6 +54,8 @@ const TourDetail = () => {
     if (user && user.email) {
       const bookingData = {
         guestName: data.name,
+        email: user.email,
+        location:tours.location,
         phone: data.phone,
         date: data.date,
         guest: guestCount,
@@ -66,7 +68,7 @@ const TourDetail = () => {
         if (res.data.insertedId) {
           toast.success(`Your Place Booked Successfully`);
           refetch();
-          navigate("/");
+          navigate("/dashboard/yourReservation");
         }
       });
     } else {
@@ -105,7 +107,7 @@ const TourDetail = () => {
     AxiosPublic.post("/reviews", newReview).then((res) => {
       if (res.data.insertedId) {
         toast.success("Your Review Submitted");
-        refresh()
+        refresh();
       }
     });
   };

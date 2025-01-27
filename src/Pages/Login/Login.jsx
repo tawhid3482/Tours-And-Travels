@@ -8,6 +8,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { LoadCanvasTemplate, loadCaptchaEnginge } from "react-simple-captcha";
 import SocialLogin from "./SocialLogin";
 import login from '../../assets/login/login.png'
+import toast from "react-hot-toast";
 
 const Login = () => {
   const captchaRef = useRef(null);

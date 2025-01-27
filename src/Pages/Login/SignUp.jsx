@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
-import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import login from "../../assets/login/login.png";
-import { AuthContext } from "../../Provider/AuthProvider";
 import SocialLogin from "./SocialLogin";
+import { AuthContext } from "../../Provider/AuthProvider";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile } =useContext(AuthContext)
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const AxiosPublic = UseAxiosPublic();
@@ -45,7 +45,7 @@ const SignUp = () => {
               photo: data.photo,
               metadata: userMetadata, // Attach metadata here
             };
-
+            console.log(userInfo)
             // Save user data to your server
             AxiosPublic.post("/users", userInfo)
               .then((res) => {

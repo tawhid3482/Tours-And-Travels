@@ -1,10 +1,12 @@
-import React from "react";
+import { Helmet } from "react-helmet-async";
+import UseAuth from "../../../Hooks/UseAuth";
 
 const UserHome = () => {
+  const {user}=UseAuth()
   return (
     <div>
       <Helmet>
-        <title>Grocery-Shop | User Home</title>
+        <title>Traveling | User Home</title>
       </Helmet>
       <p className="text-3xl font-semibold my-2">Welcome {user.displayName}</p>
 

@@ -1,9 +1,9 @@
 import { NavLink, Outlet } from "react-router-dom";
 import UseAdmin from "../Hooks/UseAdmin";
-import { FaBook, FaHome, FaUsers } from "react-icons/fa";
+import { FaBook, FaHome, FaMailBulk, FaUsers } from "react-icons/fa";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { LiaProductHunt } from "react-icons/lia";
-import { MdOutlineLocalGroceryStore } from "react-icons/md";
+import { LiaProductHunt, LiaShoppingBagSolid } from "react-icons/lia";
+import { MdOutlineHistory, MdOutlineLocalGroceryStore } from "react-icons/md";
 
 const Dashboard = () => {
   const [isAdmin] = UseAdmin();
