@@ -21,12 +21,12 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li className="bg-[#08B3AB] rounded-lg my-2">
-        <NavLink to={"/dashboard/addProducts"}>
+        <NavLink to={"/dashboard/addPlace"}>
           <LiaProductHunt className="text-xl"></LiaProductHunt>Add Place
         </NavLink>
       </li>
       <li className="bg-[#08B3AB] rounded-lg my-2">
-        <NavLink to={"/dashboard/manageProducts"}>
+        <NavLink to={"/dashboard/managePlace"}>
           <FaBook className="text-xl"></FaBook>Manage Place
         </NavLink>
       </li>

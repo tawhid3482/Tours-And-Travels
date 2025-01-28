@@ -6,12 +6,12 @@ const TourPlaces = ({ tour }) => {
 
   return (
     <div>
-      <div className="card bg-base-100 w-64 my-5 dark:bg-slate-300 dark:text-black shadow-xl">
+      <div className="card bg-base-100 w-64  my-5 dark:bg-slate-300 dark:text-black shadow-xl">
         <figure>
           <img
             src={img}
             alt="img"
-            className="transition-transform duration-300 ease-in-out  hover:scale-110 "
+            className="transition-transform duration-300 ease-in-out h-40 hover:scale-110 "
           />
         </figure>
         <div className="p-4">

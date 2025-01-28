@@ -29,6 +29,7 @@ const AddPlace = () => {
           img: imageResponse.data.data.display_url,
           price: parseFloat(data.price),
           rating: parseFloat(data.rating),
+          email:data.email,
           description: data.description,
           serviceCharge: parseInt(data.serviceCharge),
           location: data.location,
@@ -134,13 +135,13 @@ const AddPlace = () => {
             <div className="form-control w-full my-6">
               <label className="label">
                 <span className="label-text dark:bg-slate-700 dark:text-slate-100">
-                  Supplier Email
+                   Email
                 </span>
               </label>
               <input
                 type="email"
-                placeholder="Supplier Email"
-                {...register("supplierEmail", { required: true })}
+                placeholder=" Email"
+                {...register("email", { required: true })}
                 className="input input-bordered w-full"
               />
             </div>
@@ -173,7 +174,7 @@ const AddPlace = () => {
           </div>
 
           <div className="form-control w-full my-6">
-            <button type="submit" className="btn btn-primary w-full">
+            <button type="submit" className="btn bg-[#08B3AB] text-white w-full">
               Add Place
             </button>
           </div>

@@ -23,7 +23,7 @@ const Banner = () => {
 
   return (
     <div className="dark:bg-slate-300 dark:text-black ">
-      <div className="container mx-auto flex flex-col md:flex-row items-center gap-8">
+      <div className=" mx-auto flex flex-col md:flex-row items-center gap-8">
         {/* Left Content */}
         <div className="flex-1 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start mb-4">

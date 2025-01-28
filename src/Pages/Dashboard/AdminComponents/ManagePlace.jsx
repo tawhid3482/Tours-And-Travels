@@ -20,6 +20,7 @@ const ManagePlace = () => {
     },
   });
 
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -51,7 +52,7 @@ const ManagePlace = () => {
 
   // Filter products based on the search term
   const filterPlace = data?.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    item.location?.toLowerCase().includes(searchTerm?.toLowerCase())
   );
 
   return (
@@ -91,11 +92,12 @@ const ManagePlace = () => {
 
       <div className="overflow-x-auto">
         <table className="table w-full">
-          <thead className="text-lg bg-green-600 text-white rounded-md">
+          <thead className="text-lg bg-[#08B3AB] text-white rounded-xl">
             <tr>
               <th>#</th>
               <th>Image</th>
               <th>Name</th>
+              <th>Location</th>
               <th>Price</th>
               <th>Update</th>
               <th>Delete</th>
@@ -117,10 +119,11 @@ const ManagePlace = () => {
                     </div>
                   </div>
                 </td>
-                <td>{item.name}</td>
+                <td>{item.placeName}</td>
+                <td>{item.location}</td>
                 <td>$ {item.price}</td>
                 <td>
-                  <Link to={`/dashboard/updateProducts/${item._id}`}>
+                  <Link to={`/dashboard/updatePlace/${item._id}`}>
                     <button className="btn">
                       <FaEdit className="text-xl text-[#08B3AB]" />
                     </button>

@@ -14,7 +14,6 @@ import UserHome from "../Pages/Dashboard/UserComponents/UserHome";
 import AdminHome from "../Pages/Dashboard/AdminComponents/AdminHome";
 import AdminRoute from "./AdminRoute";
 import AllUser from "../Pages/Dashboard/AdminComponents/AllUser";
-import AddPlace from "../Pages/Dashboard/AdminComponents/AddPlace";
 import ManagePlace from "../Pages/Dashboard/AdminComponents/ManagePlace";
 import UpdatePlace from "../Pages/Dashboard/AdminComponents/UpdatePlace";
 import Payment from "../Pages/Dashboard/UserComponents/Payment/Payment";
@@ -22,6 +21,7 @@ import PaymentHistory from "../Pages/Dashboard/UserComponents/Payment/PaymentHis
 import YourBooking from "../Pages/Dashboard/UserComponents/YourBooking";
 import AllReservation from "../Pages/Dashboard/AdminComponents/AllReservation";
 import YourReservation from "../Pages/Dashboard/UserComponents/yourReservation";
+import AddPlace from "../Pages/Dashboard/AdminComponents/AddPlace";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <TourDetail></TourDetail>,
-        loader: () => fetch("http://localhost:5000/place"),
+        loader: () => fetch("https://tour-server-three.vercel.app/place"),
       },
       {
         path: "/login",
@@ -111,7 +111,7 @@ export const router = createBrowserRouter([
         path: "addPlace",
         element: (
           <AdminRoute>
-            <AddPlace></AddPlace>
+           <AddPlace></AddPlace>
           </AdminRoute>
         ),
       },
@@ -131,7 +131,7 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/place/${params.id}`),
+          fetch(`https://tour-server-three.vercel.app/place/${params.id}`),
       },
       {
         path: "allReservation",

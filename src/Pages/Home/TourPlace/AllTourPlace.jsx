@@ -86,7 +86,7 @@ const AllTourPlace = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6">
       {filteredTours?.length > 0 ? (
           filteredTours.map((tour) => (
             <TourPlaces key={tour._id} tour={tour}></TourPlaces>

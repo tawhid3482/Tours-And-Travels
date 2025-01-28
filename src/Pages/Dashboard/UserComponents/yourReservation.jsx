@@ -7,11 +7,8 @@ import UseReservation from "../../../Hooks/UseReservation";
 
 const YourReservation = () => {
   const [reservationData, refetch] = UseReservation(); // Fetch reservation data
-  const AxiosSecure = useAxiosSecure();
-
   const reservations = reservationData?.flatMap((item) => item.reserve) || [];
 
-  
   return (
     <div>
       <Helmet>
@@ -64,7 +61,7 @@ const YourReservation = () => {
                         <span className="font-semibold">Service Charge:</span> ${item.serviceCharge}
                       </p>
                     </td>
-                  
+                    
                   </tr>
                 ))
               ) : (
