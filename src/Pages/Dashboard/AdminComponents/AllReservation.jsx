@@ -1,23 +1,14 @@
 import Swal from "sweetalert2";
-import useOrder from "../../../Hooks/useOrder";
-import { MdDelete } from "react-icons/md";
 import { CiDeliveryTruck } from "react-icons/ci";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import UseReservation from "../../../Hooks/UseReservation";
 
 const AllReservation = () => {
   const AxiosSecure = useAxiosSecure();
-
-  const { data: reservation, refetch } = useQuery({
-    queryKey: ["reservation"],
-    queryFn: async () => {
-      const res = await AxiosSecure.get("reservation");
-      return res.data;
-    },
-  });
-
+const [reserve]=UseReservation()
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -66,8 +57,8 @@ const AllReservation = () => {
     });
   };
 
-  const confirmedOrders = reservation?.filter((item) => item.isOrderConfirmed);
-  const unconfirmedOrders = reservation?.filter(
+  const confirmedOrders = reserve?.filter((item) => item.isOrderConfirmed);
+  const unconfirmedOrders = reserve?.filter(
     (item) => !item.isOrderConfirmed
   );
 

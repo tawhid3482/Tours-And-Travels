@@ -16,8 +16,8 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li className="bg-[#08B3AB] rounded-lg my-2">
-        <NavLink to={"/dashboard/allOrders"}>
-          <CiDeliveryTruck className="text-xl"></CiDeliveryTruck>All Order
+        <NavLink to={"/dashboard/allReservation"}>
+          <CiDeliveryTruck className="text-xl"></CiDeliveryTruck>All Reservation
         </NavLink>
       </li>
       <li className="bg-[#08B3AB] rounded-lg my-2">
@@ -46,11 +46,19 @@ const Dashboard = () => {
         </NavLink>
       </li>
       <li className="bg-[#08B3AB] rounded-lg my-2">
+        <NavLink to={"/dashboard/yourBooking"}>
+          <MdOutlineLocalGroceryStore className="text-xl"></MdOutlineLocalGroceryStore>{" "}
+          Your Booking
+        </NavLink>
+      </li>
+      
+      <li className="bg-[#08B3AB] rounded-lg my-2">
         <NavLink to={"/dashboard/yourReservation"}>
           <MdOutlineLocalGroceryStore className="text-xl"></MdOutlineLocalGroceryStore>{" "}
           Your Reservation
         </NavLink>
       </li>
+
       <li className="bg-[#08B3AB] rounded-lg my-2">
         <NavLink to={"/dashboard/paymentHistory"}>
           <MdOutlineHistory className="text-xl"></MdOutlineHistory>Payment

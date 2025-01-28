@@ -68,7 +68,7 @@ const TourDetail = () => {
         if (res.data.insertedId) {
           toast.success(`Your Place Booked Successfully`);
           refetch();
-          navigate("/dashboard/yourReservation");
+          navigate("/dashboard/yourBooking");
         }
       });
     } else {
