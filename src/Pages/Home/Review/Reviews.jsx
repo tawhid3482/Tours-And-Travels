@@ -48,7 +48,7 @@ const Reviews = () => {
         {review.map(({ _id, name, img, speech }) => (
           <SwiperSlide key={_id}>
             <div className="w-96">
-              <p className="text-lg mb-4">{speech}</p>
+              <p className="text-lg mb-4 h-32">{speech}</p>
               <div className="flex gap-5 items-center">
                 <img
                   src={img}

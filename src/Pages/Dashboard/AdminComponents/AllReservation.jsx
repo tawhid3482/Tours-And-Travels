@@ -3,10 +3,19 @@ import { FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
 import UseReservation from "../../../Hooks/UseReservation";
+import { useQuery } from "@tanstack/react-query";
 
 const AllReservation = () => {
   const AxiosSecure = useAxiosSecure();
-  const [reservationData, refetch] = UseReservation();
+  // const [reservationData, refetch] = UseReservation();
+
+  const { data: reservationData, refetch } = useQuery({
+    queryKey: ["reservation"],
+    queryFn: async () => {
+      const res = await AxiosSecure.get("/reservation");
+      return res.data;
+    },
+  });
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -57,8 +66,8 @@ const AllReservation = () => {
               </tr>
             </thead>
             <tbody>
-              {reservationData.length > 0 ? (
-                reservationData.map((item, index) => (
+              {reservationData?.length > 0 ? (
+                reservationData?.map((item, index) => (
                   <tr
                     key={item._id}
                     className="border-b hover:bg-gray-100 transition duration-200"
